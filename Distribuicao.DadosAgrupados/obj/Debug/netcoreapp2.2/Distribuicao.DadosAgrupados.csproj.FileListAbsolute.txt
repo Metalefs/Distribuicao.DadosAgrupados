@@ -1,0 +1,11 @@
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.csprojAssemblyReference.cache
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.csproj.CoreCompileInputs.cache
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.AssemblyInfoInputs.cache
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.AssemblyInfo.cs
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\bin\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.deps.json
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\bin\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.runtimeconfig.json
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\bin\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.runtimeconfig.dev.json
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\bin\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.dll
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\bin\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.pdb
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.dll
+C:\Users\jackson.ramalho\source\repos\Distribuicao.DadosAgrupados\Distribuicao.DadosAgrupados\obj\Debug\netcoreapp2.2\Distribuicao.DadosAgrupados.pdb
