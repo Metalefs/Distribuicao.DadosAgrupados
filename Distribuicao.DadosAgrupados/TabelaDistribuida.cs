@@ -132,10 +132,10 @@ namespace Distribuicao.DadosAgrupados
             }
         }
 
-        private void SalvarResultadoHTML(List<string> Linha)
-        {
-
-        }
+       // private void SalvarResultadoHTML(List<string> Linha)
+       //{
+       //
+       //}
 
         private string GerarCabecalho()
         {
