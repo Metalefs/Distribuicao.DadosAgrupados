@@ -97,6 +97,7 @@ namespace Distribuicao.DadosAgrupados
         {
             float xi, fi, Fi, fr, Fr = 0;
             float Abertura = ValorMinimo;
+            List<string> Calculos = new List<string>();
             for (int i = 0; i <= QuantidadeIntervalos; i++)
             {
                 float Fim = Abertura + Intervalo;
@@ -105,18 +106,21 @@ namespace Distribuicao.DadosAgrupados
                 xi = CalcularMediaXI(Abertura, Fim);
                 fi = CalcularFrequenciaSimples(Abertura, Fim);
                 FrequenciasSimples.Add(fi);
-
+                
                 Fi = CalcularFrequenciaSimplesAcumulada(i,fi);
                 fr = CalcularFrequenciaRelativa(i);
                 FrequenciasRelativas.Add(fr);
+                Calculos.Add($"{FrequenciasSimples[pos]} / NumeroDeElementos * 100 = {FrequenciasSimples[pos] / NumeroDeElementos * 100}")
 
                 Fr = CalcularFrequenciaRelativaAcumulada(i,fr);
+                
 
                 Linhas.Add(GerarLinha(variavel,xi,fi,Fi,fr,Fr));
 
                 Abertura = Fim;
             }
             Linhas.Add(GerarLinha("", 0f, FrequenciasSimples.Sum(), 0f, FrequenciasRelativas.Sum(), 0f));
+            
             SalvarResultado(Linhas);
         }
 
