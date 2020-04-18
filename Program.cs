@@ -19,7 +19,6 @@ namespace Distribuicao.DadosAgrupados
 			}
             
             TabelaDistribuicao tabela = new TabelaDistribuicao(NotasF);
-            Console.ReadKey();
         }
     }
 

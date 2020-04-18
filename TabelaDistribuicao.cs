@@ -98,6 +98,7 @@ namespace Distribuicao.DadosAgrupados
             float xi, fi, Fi, fr, Fr = 0;
             float Abertura = ValorMinimo;
             List<string> Calculos = new List<string>();
+            float xifi = 0;
             for (int i = 0; i <= QuantidadeIntervalos; i++)
             {
                 float Fim = Abertura + Intervalo;
@@ -110,19 +111,58 @@ namespace Distribuicao.DadosAgrupados
                 Fi = CalcularFrequenciaSimplesAcumulada(i, fi);
                 fr = CalcularFrequenciaRelativa(i);
                 FrequenciasRelativas.Add(fr);
-                Calculos.Add($"{FrequenciasSimples[i]} / NumeroDeElementos * 100 = {FrequenciasSimples[i] / NumeroDeElementos * 100}");
+                Calculos.Add($"fr {i} = {FrequenciasSimples[i]} / {NumeroDeElementos} * 100 = {(FrequenciasSimples[i] / NumeroDeElementos) * 100} \n");
 
                 Fr = CalcularFrequenciaRelativaAcumulada(i, fr);
-
 
                 Linhas.Add(GerarLinha(variavel, xi, fi, Fi, fr, Fr));
 
                 Abertura = Fim;
+
+                xifi += xi +fi;
             }
             Linhas.Add(GerarLinha("", 0f, FrequenciasSimples.Sum(), 0f, FrequenciasRelativas.Sum(), 0f));
+            Linhas.Add($"Moda: {CalcularModa()}");
+            Linhas.AddRange(Calculos);
 
             SalvarResultado(Linhas);
         }
+
+        
+
+        private float CalcularModa()
+        {
+            float Resultado = Valores.GroupBy(i => i).OrderByDescending(grp => grp.Count())
+            .Select(grp => grp.Key).First();
+
+            //if (Resultado >= 0 && Resultado <= 4)
+            //{
+            //    switch (Resultado)
+            //    {
+            //        case 0:
+            //            Classificacao = ClassificacaoModa.Amodal;
+            //            break;
+            //        case 1:
+            //            Classificacao = ClassificacaoModa.Unimodal;
+            //            break;
+            //        case 2:
+            //            Classificacao = ClassificacaoModa.Bimodal;
+            //            break;
+            //        case 3:
+            //            Classificacao = ClassificacaoModa.Trimodal;
+            //            break;
+            //        case 4:
+            //            Classificacao = ClassificacaoModa.Polimodal;
+            //            break;
+            //    }
+            //}
+            //else if (Resultado >= 4)
+            //{
+            //    Classificacao = ClassificacaoModa.Polimodal;
+            //}
+            return Resultado;
+        }
+
 
         private void SalvarResultado(List<string> Linhas)
         {
@@ -133,7 +173,11 @@ namespace Distribuicao.DadosAgrupados
                 {
                     tw.Write(linha);
                 }
-                tw.WriteLine($"\n Amplitude: {Amplitude} \n Quantidade Intervalos: {QuantidadeIntervalos} \n Intervalo {Intervalo}");
+                tw.WriteLine($"\n Amplitude: {ValorMaximo} - {ValorMinimo} = {Amplitude}");
+                tw.WriteLine($" Quantidade Intervalos: sqr.root {NumeroDeElementos} = {QuantidadeIntervalos}");
+                tw.WriteLine($" Intervalo: {Amplitude} / {QuantidadeIntervalos} = {Intervalo}");
+                tw.WriteLine($" Média: {Valores.Sum()} / {NumeroDeElementos} = {Valores.Average()}");
+                tw.WriteLine($" Mediana = {Valores[(int)Valores.Count / 2]}");               
             }
         }
 
