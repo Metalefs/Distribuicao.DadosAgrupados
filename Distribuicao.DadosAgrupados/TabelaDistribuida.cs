@@ -129,6 +129,7 @@ namespace Distribuicao.DadosAgrupados
                 {
                     tw.Write(linha);
                 }
+                tw.WriteLine($"\n Amplitude: {Amplitude} \n Quantidade Intervalos: {Intervalos} \n Intervalo {Intervalo}")
             }
         }
 
