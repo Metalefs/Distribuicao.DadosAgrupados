@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Distribuicao.DadosAgrupados
 {
-    public class TabelaDistribuida : ITabelaDistribuida
+    public class TabelaDistribuicao : ITabelaDistribuicao
     {
         public List<KeyValuePair<string, int>> NomesColunas = new List<KeyValuePair<string, int>>()
         {

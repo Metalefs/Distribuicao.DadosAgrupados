@@ -7,10 +7,11 @@ namespace Distribuicao.DadosAgrupados
     {
         static void Main(string[] args)
         {
-            if(args.Length == 0)
-                string[] Notas = Console.ReadLine().ToString().Split(',');
+            string[] Notas;
+            if (args.Length == 0)
+               Notas = Console.ReadLine().ToString().Split(',');
             else
-                string[] Notas = args[0].ToString().Split(',');
+               Notas = args[0].ToString().Split(',');
             
 			List<float> NotasF = new List<float>();
 			foreach(string nota in Notas){
