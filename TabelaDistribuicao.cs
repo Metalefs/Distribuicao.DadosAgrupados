@@ -6,18 +6,18 @@ using System.Text;
 
 namespace Distribuicao.DadosAgrupados
 {
-    public class TabelaDistribuicao : ITabelaDistribuicao
+    public class TabelaDistribuida : ITabelaDistribuida
     {
         public List<KeyValuePair<string, int>> NomesColunas = new List<KeyValuePair<string, int>>()
         {
-            new KeyValuePair<string, int>("Classes", 15),
-            new KeyValuePair<string, int>("P.Médio(xi)", 10),
-            new KeyValuePair<string, int>("F.Abs(fi)", 10),
-            new KeyValuePair<string, int>("F.Rel(Fi)", 10),
-            new KeyValuePair<string, int>("F.Abs.Acum(Fi)", 10),
-            new KeyValuePair<string, int>("F.Rel.Acum(Fr)", 10)
+            new KeyValuePair<string, int>("Dados", 15),
+            new KeyValuePair<string, int>("xi", 10),
+            new KeyValuePair<string, int>("fi", 10),
+            new KeyValuePair<string, int>("Fi", 10),
+            new KeyValuePair<string, int>("fr", 10),
+            new KeyValuePair<string, int>("Fr", 10),
         };
-        
+
         private List<string> Linhas = new List<string>();
         private List<float> FrequenciasSimples = new List<float>();
         private List<float> FrequenciasRelativas = new List<float>();
@@ -30,7 +30,7 @@ namespace Distribuicao.DadosAgrupados
         private float ValorMinimo;
         private float ValorMaximo;
 
-        public TabelaDistribuicao(List<float> Valores)
+        public TabelaDistribuida(List<float> Valores)
         {
             this.Valores = Valores;
             NumeroDeElementos = Valores.Count;
@@ -97,6 +97,7 @@ namespace Distribuicao.DadosAgrupados
         {
             float xi, fi, Fi, fr, Fr = 0;
             float Abertura = ValorMinimo;
+            List<string> Calculos = new List<string>();
             for (int i = 0; i <= QuantidadeIntervalos; i++)
             {
                 float Fim = Abertura + Intervalo;
@@ -106,51 +107,53 @@ namespace Distribuicao.DadosAgrupados
                 fi = CalcularFrequenciaSimples(Abertura, Fim);
                 FrequenciasSimples.Add(fi);
 
-                Fi = CalcularFrequenciaSimplesAcumulada(i,fi);
+                Fi = CalcularFrequenciaSimplesAcumulada(i, fi);
                 fr = CalcularFrequenciaRelativa(i);
                 FrequenciasRelativas.Add(fr);
+                Calculos.Add($"{FrequenciasSimples[pos]} / NumeroDeElementos * 100 = {FrequenciasSimples[pos] / NumeroDeElementos * 100}")
 
-                Fr = CalcularFrequenciaRelativaAcumulada(i,fr);
+                Fr = CalcularFrequenciaRelativaAcumulada(i, fr);
 
-                Linhas.Add(GerarLinha(variavel,xi,fi,Fi,fr,Fr));
+
+                Linhas.Add(GerarLinha(variavel, xi, fi, Fi, fr, Fr));
 
                 Abertura = Fim;
             }
             Linhas.Add(GerarLinha("", 0f, FrequenciasSimples.Sum(), 0f, FrequenciasRelativas.Sum(), 0f));
+
             SalvarResultado(Linhas);
         }
 
         private void SalvarResultado(List<string> Linhas)
         {
-            using(TextWriter tw = new StreamWriter("Resultado.txt", true))
+            using (TextWriter tw = new StreamWriter("Resultado.txt", true))
             {
                 tw.WriteLine(GerarCabecalho());
-                Console.WriteLine(GerarCabecalho());
                 foreach (string linha in Linhas)
                 {
                     tw.Write(linha);
-                    Console.Write(linha);
                 }
+                tw.WriteLine($"\n Amplitude: {Amplitude} \n Quantidade Intervalos: {Intervalos} \n Intervalo {Intervalo}")
             }
         }
 
-        private void SalvarResultadoHTML(List<string> Linha)
-        {
-
-        }
+        // private void SalvarResultadoHTML(List<string> Linha)
+        //{
+        //
+        //}
 
         private string GerarCabecalho()
         {
             StringBuilder sb = new StringBuilder();
             foreach (KeyValuePair<string, int> KV in NomesColunas)
             {
-                if(KV.Key == "Dados")
+                if (KV.Key == "Dados")
                 {
-                    sb.Append($"{KV.Key.PadLeft(20), 20}\t");
+                    sb.Append($"{KV.Key.Normalized(),15}");
                 }
                 else
                 {
-                    sb.Append($"{KV.Key.Normalized(), 15} ");
+                    sb.Append($"{KV.Key.Normalized(),10}");
                 }
             }
             return sb.ToString();
@@ -160,12 +163,12 @@ namespace Distribuicao.DadosAgrupados
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(
-                $"{variavel,20}" +
-                $"{PadronizarLinha(xi),15}" +
-                $"{PadronizarLinha(fi),15}" +
-                $"{PadronizarLinha(Fi),15}" +
-                $"{PadronizarLinha(fr),15}" +
-                $"{PadronizarLinha(Fr),15} "
+                $"{variavel,15}" +
+                $"{PadronizarLinha(xi),10}" +
+                $"{PadronizarLinha(fi),10}" +
+                $"{PadronizarLinha(Fi),10}" +
+                $"{PadronizarLinha(fr),10}" +
+                $"{PadronizarLinha(Fr),10}"
             );
             return sb.ToString();
         }
