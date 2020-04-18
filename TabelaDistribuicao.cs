@@ -30,7 +30,7 @@ namespace Distribuicao.DadosAgrupados
         private float ValorMinimo;
         private float ValorMaximo;
 
-        public TabelaDistribuida(List<float> Valores)
+        public TabelaDistribuicao(List<float> Valores)
         {
             this.Valores = Valores;
             NumeroDeElementos = Valores.Count;
@@ -110,7 +110,7 @@ namespace Distribuicao.DadosAgrupados
                 Fi = CalcularFrequenciaSimplesAcumulada(i, fi);
                 fr = CalcularFrequenciaRelativa(i);
                 FrequenciasRelativas.Add(fr);
-                Calculos.Add($"{FrequenciasSimples[pos]} / NumeroDeElementos * 100 = {FrequenciasSimples[pos] / NumeroDeElementos * 100}")
+                Calculos.Add($"{FrequenciasSimples[i]} / NumeroDeElementos * 100 = {FrequenciasSimples[i] / NumeroDeElementos * 100}");
 
                 Fr = CalcularFrequenciaRelativaAcumulada(i, fr);
 
@@ -133,7 +133,7 @@ namespace Distribuicao.DadosAgrupados
                 {
                     tw.Write(linha);
                 }
-                tw.WriteLine($"\n Amplitude: {Amplitude} \n Quantidade Intervalos: {Intervalos} \n Intervalo {Intervalo}")
+                tw.WriteLine($"\n Amplitude: {Amplitude} \n Quantidade Intervalos: {QuantidadeIntervalos} \n Intervalo {Intervalo}");
             }
         }
 
